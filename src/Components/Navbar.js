@@ -1,23 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {  NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Navbar(props) {
   const activePage = ({isActive})=>{
     return {
       fontWeight: isActive ? 'bold' : 'normal',
-      textDecoration: isActive ? 'none' : 'underline'
+      textDecoration: isActive ? 'none' : 'underline',
+      backgroundColor: isActive ? 'transparent' : 'transparent'
     }
   }
+
   return (
     <nav className={`navbar navbar-expand-lg bg-opacity-75 bg-${props.theme === true ? "warning" : "black"}`}>
       <div className="container-fluid">
-       < NavLink
+       <NavLink
           className={`navbar-brand text-${props.theme === false ? "light" : "dark"} `} 
-          // style={activePage}
           to="/"> 
           {props.title}
-        </ NavLink>
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"
@@ -31,85 +32,71 @@ export default function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-             < NavLink
-                className={`nav-link active text-${props.theme === false ? "light" : "dark"} `}
+              <NavLink
+                className={`nav-link text-${props.theme === false ? "light" : "dark"} `}
                 style={activePage}
                 aria-current="page"
                 to="/">
                 {props.HomePage}
-              </ NavLink>
+              </NavLink>
             </li>
             <li className="nav-item">
-             < NavLink
+             <NavLink
                 className={`nav-link text-${props.theme === false ? "light" : "dark"} `}
                 style={activePage}
                 to="/about">
                 About
-              </ NavLink>
+              </NavLink>
             </li>
             <li className="nav-item dropdown">
-             < NavLink
+             <NavLink
                 className={`nav-link dropdown-toggle text-${props.theme === false ? "light" : "dark"}`}
                 to="/"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Menu
-              </ NavLink>
-              <ul className={`dropdown-menu bg-${props.theme === true ? "light" : "dark"}`}>
+              </NavLink>
+              <ul className={`dropdown-menu bg-${props.theme === true ? "warning" : "black"}`}>
                 <li>
-                 < NavLink
-                    className={`dropdown-item text-${
-                      props.theme === false ? "light" : "dark"
-                    } `}
-                    to="/"
-                    id="menuItem"
-                  >
+                 <Link
+                    className={`dropdown-item text-${props.theme === false ? "light" : "dark"} `}
+                    to="/a"
+                    id="menuItem">
                     Action
-                  </ NavLink>
+                  </Link>
                 </li>
                 <li>
-                 < NavLink
-                    className={`dropdown-item text-${
-                      props.theme === false ? "light" : "dark"
-                    } `}
-                    to="/"
-                    id="menuItem"
-                  >
+                 <Link
+                    className={`dropdown-item text-${props.theme === false ? "light" : "dark"} `}
+                    to="/a"
+                    id="menuItem">
                     Another action
-                  </ NavLink>
+                  </Link>
                 </li>
                 <li>
                   <hr className="dropdown-divider" />
                 </li>
                 <li>
-                 < NavLink
-                    className={`dropdown-item text-${
-                      props.theme === false ? "light" : "dark"
-                    } `}
-                    to="/"
-                    id="menuItem"
-                  >
+                 <Link
+                    className={`dropdown-item text-${props.theme === false ? "light" : "dark"} `}
+                    to="/a"
+                    id="menuItem">
                     Something else here
-                  </ NavLink>
+                  </Link>
                 </li>
               </ul>
             </li>
             <li>
-              <div className="form-check form-switch my-2 ms-3"><input onChange={props.toggleTheme} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"/><label className="form-check-label" htmlFor="flexSwitchCheckDefault"></label></div>
+              <div disabled className="form-check form-switch my-2 ms-3"><input style={{cursor: 'pointer'}} onClick={()=>{props.toggleTheme(null)}} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"/><label className="form-check-label" htmlFor="flexSwitchCheckDefault"></label></div>
+            </li>
+            <li>
+              <div className="d-flex"><button hidden onClick={()=>{props.toggleTheme('primary')}} className="bg-primary rounded mx-2 mt-1" style={{height: '28px', width: '29px', cursor: 'pointer'}}></button></div>
             </li>
           </ul>
-          {/* <button type="button" className="btn btn-outline-success me-4">Green</button> */}
           <form className="d-flex" role="search">
-            <input
-              className="form-control me-2 "
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-primary" type="submit">
-              Search
-            </button>
+            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <button className={`btn btn-${props.theme === false ? "outline-" : ""}primary`} type="submit">Search</button>
           </form>
         </div>
       </div>

@@ -9,7 +9,6 @@ import { Routes, Route } from "react-router-dom";
 
 function App() {
   const { theme, toggleTheme, alert, toggleAlert } = Javascript();
-
   return (
     <>
       <Navbar title="Asim Mehmood" homePage="Home" theme={theme} toggleTheme={toggleTheme}/>
